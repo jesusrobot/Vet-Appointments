@@ -1,3 +1,4 @@
+import Form from './components/Form'
 import Header from './components/Header'
 
 function App() {
@@ -5,7 +6,7 @@ function App() {
     <div className="container mx-auto mt-20">
       <Header />
       <main className="mt-12 md:flex">
-        <h2>Form</h2>
+        <Form />
         <h2>Appointments</h2>
       </main>
     </div>
