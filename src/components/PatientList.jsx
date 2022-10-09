@@ -1,3 +1,5 @@
+import Patient from './Patient'
+
 function PatientList() {
   return (
     <section className="md:h-screen overflow-y-scroll md:w-1/2 lg:w-3/5 ">
@@ -6,6 +8,7 @@ function PatientList() {
         Administra tus {}
         <span className="font-bold text-indigo-600">Pacientes y Citas</span>
       </p>
+      <Patient />
     </section>
   )
 }
