@@ -1,12 +1,59 @@
-function Form() {
+import { useState } from 'react'
+
+function Form({ setPatients }) {
+  const [patient, setPatient] = useState({
+    name: '',
+    owner: '',
+    email: '',
+    dischargeDate: '',
+    symptoms: '',
+  })
+  const [error, setError] = useState(false)
+
+  const { name, owner, email, dischargeDate, symptoms } = patient
+
+  const handleChange = (e) => {
+    setPatient({
+      ...patient,
+      [e.target.id]: e.target.value,
+    })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    if ([name, owner, email, dischargeDate, symptoms].includes('')) {
+      setError(true)
+      return
+    }
+
+    setPatients((patients) => [...patients, patient])
+    setPatient({
+      name: '',
+      owner: '',
+      email: '',
+      dischargeDate: '',
+      symptoms: '',
+    })
+    setError(false)
+  }
+
   return (
     <div className="md:w-1/2 lg:w-2/5">
       <h2 className="text-3xl text-center font-black">Seguimiento Paciente</h2>
       <p className="mt-5 mb-10 text-lg text-center">
-        Añade Pacientes y {}{' '}
+        Añade Pacientes y {}
         <span className="font-bold text-indigo-600">Administralos</span>
       </p>
-      <form className="mx-3 mb-10 px-5 py-10 rounded-lg bg-white shadow-md">
+      <form
+        className="mx-3 mb-10 px-5 py-10 rounded-lg bg-white shadow-md"
+        onSubmit={handleSubmit}
+      >
+        {error && (
+          <div className="mb-3 p-3 text-center font-bold uppercase rounded-md bg-red-100 text-red-800">
+            <p>Todos los campos son necesarios</p>
+          </div>
+        )}
         <fieldset className="mb-5">
           <label
             htmlFor="name"
@@ -19,6 +66,8 @@ function Form() {
             id="name"
             placeholder="Ej. Coco"
             className="w-full p-2 border-2 rounded-md placeholder-gray-400"
+            value={name}
+            onChange={handleChange}
           />
         </fieldset>
         <fieldset className="mb-5">
@@ -33,6 +82,8 @@ function Form() {
             id="owner"
             placeholder="Ej. Fulanito de Tal"
             className="w-full p-2 border-2 rounded-md placeholder-gray-400"
+            value={owner}
+            onChange={handleChange}
           />
         </fieldset>
         <fieldset className="mb-5">
@@ -47,6 +98,8 @@ function Form() {
             id="email"
             placeholder="Ej. fulanito@email.com"
             className="w-full p-2 border-2 rounded-md placeholder-gray-400"
+            value={email}
+            onChange={handleChange}
           />
         </fieldset>
         <fieldset className="mb-5">
@@ -60,6 +113,8 @@ function Form() {
             type="date"
             id="dischargeDate"
             className="w-full p-2 border-2 rounded-md placeholder-gray-400"
+            value={dischargeDate}
+            onChange={handleChange}
           />
         </fieldset>
         <fieldset className="mb-5">
@@ -73,6 +128,8 @@ function Form() {
             id="symptoms"
             placeholder="Ej. Se rasca mucho"
             className="w-full p-2 border-2 rounded-md placeholder-gray-400"
+            value={symptoms}
+            onChange={handleChange}
           />
         </fieldset>
         <input
