@@ -64,6 +64,7 @@ function Form({ setPatients }) {
           <input
             type="text"
             id="name"
+            required
             placeholder="Ej. Coco"
             className="w-full p-2 border-2 rounded-md placeholder-gray-400"
             value={name}
@@ -80,6 +81,7 @@ function Form({ setPatients }) {
           <input
             type="text"
             id="owner"
+            required
             placeholder="Ej. Fulanito de Tal"
             className="w-full p-2 border-2 rounded-md placeholder-gray-400"
             value={owner}
@@ -96,6 +98,7 @@ function Form({ setPatients }) {
           <input
             type="email"
             id="email"
+            required
             placeholder="Ej. fulanito@email.com"
             className="w-full p-2 border-2 rounded-md placeholder-gray-400"
             value={email}
@@ -112,6 +115,7 @@ function Form({ setPatients }) {
           <input
             type="date"
             id="dischargeDate"
+            required
             className="w-full p-2 border-2 rounded-md placeholder-gray-400"
             value={dischargeDate}
             onChange={handleChange}
@@ -127,6 +131,7 @@ function Form({ setPatients }) {
           <textarea
             id="symptoms"
             placeholder="Ej. Se rasca mucho"
+            required
             className="w-full p-2 border-2 rounded-md placeholder-gray-400"
             value={symptoms}
             onChange={handleChange}
