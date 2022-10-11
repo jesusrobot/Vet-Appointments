@@ -51,7 +51,11 @@ function Form({ setPatients }) {
         className="mx-3 mb-10 px-5 py-10 rounded-lg bg-white shadow-md"
         onSubmit={handleSubmit}
       >
-        {error && <Error />}
+        {error && (
+          <Error>
+            <p>Todos los campos son necesarios</p>
+          </Error>
+        )}
         <fieldset className="mb-5">
           <label
             htmlFor="name"
