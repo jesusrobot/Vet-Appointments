@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import PropTypes from 'prop-types'
 
 function Form({ setPatients }) {
   const [patient, setPatient] = useState({
@@ -145,6 +146,10 @@ function Form({ setPatients }) {
       </form>
     </div>
   )
+}
+
+Form.propTypes = {
+  setPatients: PropTypes.func.isRequired,
 }
 
 export default Form
