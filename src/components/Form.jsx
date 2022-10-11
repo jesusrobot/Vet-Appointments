@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
+import Error from './Error'
 
 function Form({ setPatients }) {
   const [patient, setPatient] = useState({
@@ -50,11 +51,7 @@ function Form({ setPatients }) {
         className="mx-3 mb-10 px-5 py-10 rounded-lg bg-white shadow-md"
         onSubmit={handleSubmit}
       >
-        {error && (
-          <div className="mb-3 p-3 text-center font-bold uppercase rounded-md bg-red-100 text-red-800">
-            <p>Todos los campos son necesarios</p>
-          </div>
-        )}
+        {error && <Error />}
         <fieldset className="mb-5">
           <label
             htmlFor="name"
