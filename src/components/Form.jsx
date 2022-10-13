@@ -2,8 +2,8 @@ import { useState } from 'react'
 import PropTypes from 'prop-types'
 import Error from './Error'
 
-const generateId = () => {
-  const random = Math.random().toString(36).substring
+function generateId() {
+  const random = Math.random().toString(36).substring(2)
   const date = Date.now().toString()
 
   return random + date
@@ -44,6 +44,7 @@ function Form({ setPatients }) {
       email: '',
       dischargeDate: '',
       symptoms: '',
+      id: generateId(),
     })
     setError(false)
   }
