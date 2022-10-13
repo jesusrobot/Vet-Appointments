@@ -10,7 +10,7 @@ function PatientList({ patients }) {
         <span className="font-bold text-indigo-600">Pacientes y Citas</span>
       </p>
       {patients.map((patient) => (
-        <Patient patient={patient} />
+        <Patient key={patient.id} patient={patient} />
       ))}
     </section>
   )

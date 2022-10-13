@@ -2,6 +2,13 @@ import { useState } from 'react'
 import PropTypes from 'prop-types'
 import Error from './Error'
 
+const generateId = () => {
+  const random = Math.random().toString(36).substring
+  const date = Date.now().toString()
+
+  return random + date
+}
+
 function Form({ setPatients }) {
   const [patient, setPatient] = useState({
     name: '',
@@ -9,6 +16,7 @@ function Form({ setPatients }) {
     email: '',
     dischargeDate: '',
     symptoms: '',
+    id: generateId(),
   })
   const [error, setError] = useState(false)
 
