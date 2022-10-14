@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import Patient from './Patient'
 
-function PatientList({ patients }) {
+function PatientList({ patients, setPatientSelected }) {
   return (
     <section className="md:h-screen overflow-y-scroll md:w-1/2 lg:w-3/5 ">
       {patients.length > 0 ? (
@@ -12,7 +12,11 @@ function PatientList({ patients }) {
             <span className="font-bold text-indigo-600">Pacientes y Citas</span>
           </p>
           {patients.map((patient) => (
-            <Patient key={patient.id} patient={patient} />
+            <Patient
+              key={patient.id}
+              patient={patient}
+              setPatientSelected={setPatientSelected}
+            />
           ))}
         </>
       ) : (
@@ -40,6 +44,7 @@ PatientList.propTypes = {
       symptoms: PropTypes.string,
     })
   ).isRequired,
+  setPatientSelected: PropTypes.func.isRequired,
 }
 
 export default PatientList

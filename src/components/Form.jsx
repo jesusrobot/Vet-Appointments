@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Error from './Error'
 
@@ -9,7 +9,7 @@ function generateId() {
   return random + date
 }
 
-function Form({ setPatients }) {
+function Form({ patientSelected, setPatients }) {
   const [patient, setPatient] = useState({
     name: '',
     owner: '',
@@ -37,7 +37,22 @@ function Form({ setPatients }) {
       return
     }
 
-    setPatients((patients) => [...patients, patient])
+    if (!Object.keys(patientSelected).length) {
+      setPatients((patients) => [...patients, patient])
+    } else {
+      // const updatedPatients = pati
+
+      setPatients((patients) => {
+        const updatedPatients = patients.map((patientState) =>
+          patientState.id === patientSelected.id
+            ? patientSelected
+            : patientState
+        )
+
+        return updatedPatients
+      })
+    }
+
     setPatient({
       name: '',
       owner: '',
@@ -48,6 +63,13 @@ function Form({ setPatients }) {
     })
     setError(false)
   }
+
+  useEffect(() => {
+    console.log(patientSelected)
+    if (Object.keys(patientSelected).length) {
+      setPatient(patientSelected)
+    }
+  }, [patientSelected])
 
   return (
     <div className="md:w-1/2 lg:w-2/5">
@@ -150,7 +172,11 @@ function Form({ setPatients }) {
         </fieldset>
         <input
           type="submit"
-          value="Agregar Paciente"
+          value={
+            !Object.keys(patientSelected).length
+              ? 'Agregar Paciente'
+              : 'Editar Paciente'
+          }
           className="w-full p-3 text-white font-bold uppercase bg-indigo-600 cursor-pointer hover:bg-indigo-700 transition-all"
         />
       </form>

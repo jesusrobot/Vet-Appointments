@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 
-function Patient({ patient: { name, owner, email, dischargeDate, symptoms } }) {
+function Patient({ patient, setPatientSelected }) {
+  const { name, owner, email, dischargeDate, symptoms } = patient
   return (
     <article className="mx-3 my-8 px-5 py-10 rounded-xl bg-white shadow-md">
       <p className="mb-3 font-bold  text-gray-700 uppercase">
@@ -19,6 +20,21 @@ function Patient({ patient: { name, owner, email, dischargeDate, symptoms } }) {
       <p className="mb-3 font-bold  text-gray-700 uppercase">
         Síntomas: <span className="font-normal normal-case">{symptoms}</span>
       </p>
+      <div className="flex justify-between mt-6">
+        <button
+          type="button"
+          className="px-10 py-2 font-bold text-white uppercase rounded-lg bg-indigo-600 hover:bg-indigo-700"
+          onClick={() => setPatientSelected(patient)}
+        >
+          Editar
+        </button>
+        <button
+          type="button"
+          className="px-10 py-2 font-bold text-white uppercase rounded-lg bg-red-600 hover:bg-red-700"
+        >
+          Eliminar
+        </button>
+      </div>
     </article>
   )
 }
@@ -31,6 +47,7 @@ Patient.propTypes = {
     dischargeDate: PropTypes.string,
     symptoms: PropTypes.string,
   }).isRequired,
+  setPatientSelected: PropTypes.func.isRequired,
 }
 
 export default Patient
