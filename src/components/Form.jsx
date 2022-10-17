@@ -44,9 +44,7 @@ function Form({ patientSelected, setPatients }) {
 
       setPatients((patients) => {
         const updatedPatients = patients.map((patientState) =>
-          patientState.id === patientSelected.id
-            ? patientSelected
-            : patientState
+          patientState.id === patientSelected.id ? patient : patientState
         )
 
         return updatedPatients
