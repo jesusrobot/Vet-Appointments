@@ -9,7 +9,7 @@ function generateId() {
   return random + date
 }
 
-function Form({ patientSelected, setPatients }) {
+function Form({ patientSelected, setPatients, setPatientSelected }) {
   const [patient, setPatient] = useState({
     name: '',
     owner: '',
@@ -49,6 +49,8 @@ function Form({ patientSelected, setPatients }) {
 
         return updatedPatients
       })
+
+      setPatientSelected({})
     }
 
     setPatient({

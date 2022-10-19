@@ -11,7 +11,11 @@ function App() {
     <div className="container mx-auto mt-20">
       <Header />
       <main className="mt-12 md:flex">
-        <Form patientSelected={patientSelected} setPatients={setPatients} />
+        <Form
+          patientSelected={patientSelected}
+          setPatients={setPatients}
+          setPatientSelected={setPatientSelected}
+        />
         <PatientList
           patients={patients}
           setPatientSelected={setPatientSelected}
