@@ -109,7 +109,7 @@ function Form({ patientSelected, setPatients, setPatientSelected }) {
             htmlFor="owner"
             className="block mb-2 font-bold text-gray-700 uppercase"
           >
-            Nombre del Propietarios
+            Nombre del Propietario
           </label>
           <input
             type="text"
