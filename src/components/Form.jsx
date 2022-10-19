@@ -65,7 +65,6 @@ function Form({ patientSelected, setPatients, setPatientSelected }) {
   }
 
   useEffect(() => {
-    console.log(patientSelected)
     if (Object.keys(patientSelected).length) {
       setPatient(patientSelected)
     }
@@ -186,6 +185,15 @@ function Form({ patientSelected, setPatients, setPatientSelected }) {
 
 Form.propTypes = {
   setPatients: PropTypes.func.isRequired,
+  setPatientSelected: PropTypes.func.isRequired,
+  patientSelected: PropTypes.shape({
+    name: PropTypes.string,
+    owner: PropTypes.string,
+    email: PropTypes.string,
+    dischargeDate: PropTypes.string,
+    symptoms: PropTypes.string,
+    id: PropTypes.string,
+  }).isRequired,
 }
 
 export default Form
