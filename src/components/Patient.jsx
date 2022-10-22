@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types'
 
-function Patient({ patient, setPatientSelected }) {
+function Patient({ patient, setPatientSelected, deletePatient }) {
+  const handleDelete = () => {
+    // eslint-disable-next-line no-restricted-globals, no-alert
+    const userConfirm = confirm('¿Estás seguro de eliminar esta cita?')
+    if (userConfirm) deletePatient(patient.id)
+  }
   const { name, owner, email, dischargeDate, symptoms } = patient
   return (
     <article className="mx-3 my-8 px-5 py-10 rounded-xl bg-white shadow-md">
@@ -31,6 +36,7 @@ function Patient({ patient, setPatientSelected }) {
         <button
           type="button"
           className="px-10 py-2 font-bold text-white uppercase rounded-lg bg-red-600 hover:bg-red-700"
+          onClick={handleDelete}
         >
           Eliminar
         </button>
@@ -46,8 +52,10 @@ Patient.propTypes = {
     email: PropTypes.string,
     dischargeDate: PropTypes.string,
     symptoms: PropTypes.string,
+    id: PropTypes.string,
   }).isRequired,
   setPatientSelected: PropTypes.func.isRequired,
+  deletePatient: PropTypes.func.isRequired,
 }
 
 export default Patient

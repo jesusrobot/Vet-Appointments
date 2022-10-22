@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import Patient from './Patient'
 
-function PatientList({ patients, setPatientSelected }) {
+function PatientList({ patients, setPatientSelected, deletePatient }) {
   return (
     <section className="md:h-screen overflow-y-scroll md:w-1/2 lg:w-3/5 ">
       {patients.length > 0 ? (
@@ -16,6 +16,7 @@ function PatientList({ patients, setPatientSelected }) {
               key={patient.id}
               patient={patient}
               setPatientSelected={setPatientSelected}
+              deletePatient={deletePatient}
             />
           ))}
         </>
@@ -45,6 +46,7 @@ PatientList.propTypes = {
     })
   ).isRequired,
   setPatientSelected: PropTypes.func.isRequired,
+  deletePatient: PropTypes.func.isRequired,
 }
 
 export default PatientList
