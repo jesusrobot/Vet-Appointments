@@ -1,13 +1,18 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Form from './components/Form'
 import Header from './components/Header'
 import PatientList from './components/PatientList'
 
 function App() {
+  const initialState = JSON.parse(localStorage.getItem('patients')) ?? []
   // State donde se guardan las citas
-  const [patients, setPatients] = useState([])
+  const [patients, setPatients] = useState(initialState)
   // State para guardar momentaneamente una cita seleccionada para editar
   const [patientSelected, setPatientSelected] = useState({})
+
+  useEffect(() => {
+    localStorage.setItem('patients', JSON.stringify(patients))
+  }, [patients])
 
   const deletePatient = (idPatient) => {
     const updatedPatients = patients.filter(
