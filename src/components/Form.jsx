@@ -32,27 +32,30 @@ function Form({ patientSelected, setPatients, setPatientSelected }) {
   const handleSubmit = (e) => {
     e.preventDefault()
 
+    // Si al menos uno de los inputs esta vacio muestra un error
     if ([name, owner, email, dischargeDate, symptoms].includes('')) {
       setError(true)
       return
     }
 
+    /**
+     * Si No se esta editando guarda una nueva cita.
+     * En caso contrario remplaza la cita anterior con la editada
+     */
     if (!Object.keys(patientSelected).length) {
       setPatients((patients) => [...patients, patient])
     } else {
-      // const updatedPatients = pati
-
       setPatients((patients) => {
         const updatedPatients = patients.map((patientState) =>
           patientState.id === patientSelected.id ? patient : patientState
         )
-
         return updatedPatients
       })
 
       setPatientSelected({})
     }
 
+    // Vuelve el formulario a su estado inicial
     setPatient({
       name: '',
       owner: '',
@@ -61,6 +64,8 @@ function Form({ patientSelected, setPatients, setPatientSelected }) {
       symptoms: '',
       id: generateId(),
     })
+
+    // Vuelve el estado del error a su estado inicial
     setError(false)
   }
 

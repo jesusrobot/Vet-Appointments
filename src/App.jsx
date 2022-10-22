@@ -4,7 +4,9 @@ import Header from './components/Header'
 import PatientList from './components/PatientList'
 
 function App() {
+  // State donde se guardan las citas
   const [patients, setPatients] = useState([])
+  // State para guardar momentaneamente una cita seleccionada para editar
   const [patientSelected, setPatientSelected] = useState({})
 
   return (
